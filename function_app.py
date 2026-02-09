@@ -1,14 +1,14 @@
 import azure.functions as func
 import logging, os, json
-from azure.search.documents import SearchClient
-from azure.core.credentials import AzureKeyCredential
+
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 @app.route(route="gitpushpublish")
 def gitpushpublish(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
-
+    from azure.search.documents import SearchClient
+    from azure.core.credentials import AzureKeyCredential
     name = req.params.get('name')
     if not name:
         try:
